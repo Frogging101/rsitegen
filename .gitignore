@@ -1,0 +1,13 @@
+## Build products
+*.egg-info
+*.py[cod]
+__pycache__/
+
+## Editor turds
+*.swp
+*~
+\#*#
+.#*
+
+## Misc
+*.patch
