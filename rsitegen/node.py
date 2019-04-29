@@ -245,12 +245,11 @@ class DirNode(TemplateNode):
 
 
     def render(self, root, path):
-        if not util.is_root(path):
-            os.makedirs(
-                osp.join(config["DESTDIR"],
-                         util.p2os(path.lstrip('/'))),
-                exist_ok=True
-            )
+        os.makedirs(
+            osp.join(config["DESTDIR"],
+                     util.p2os(path.lstrip('/'))),
+            exist_ok=True
+        )
         super().render(root, posixpath.join(path, config["DIRINDEX"]))
 
 

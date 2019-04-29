@@ -59,8 +59,12 @@ def split_path(path, os=False, keep_trailing=False):
 
 
 def os2p(path):
+    if not path:
+        return ''
     return posixpath.join(*split_path(path, os=True))
 
 
 def p2os(path):
+    if not path:
+        return ''
     return osp.join(*split_path(path, os=False))
