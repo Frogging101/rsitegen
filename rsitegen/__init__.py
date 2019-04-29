@@ -91,7 +91,7 @@ def main():
     for k,v in config.items():
         logger.debug('config["' + k + '"]=' + str(v))
 
-    default_templates_dir = rsitegen.conf.DEFAULT_THEME
+    default_templates_dir = osp.join(rsitegen.conf.DEFAULT_THEME, "templates")
     theme_templates_dir = osp.join(config["THEME"], "templates")
 
     jinja_env = jinja2.Environment(
