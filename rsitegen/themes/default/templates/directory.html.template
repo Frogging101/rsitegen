@@ -1,0 +1,8 @@
+{% extends "base.template" %}
+{% block content %}
+<ul>
+{% for child in node.children.keys() %}
+	<li>{{ child }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
