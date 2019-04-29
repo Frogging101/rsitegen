@@ -21,10 +21,8 @@ class NotADirectoryNodeError(NodeError):
 
 #@total_ordering
 class Node:
-    def __init__(self, src): #, parent, name):
+    def __init__(self, src):
         self._src = src
-        # self._parent = parent
-        # self._name = name
 
         if not hasattr(self, "_ts"):
             t = time.time()
@@ -33,23 +31,9 @@ class Node:
             self._ts = (sec, nsec)
 
 
-    # @property
-    # def name(self):
-    #     return self._name
-
     @property
     def src(self):
         return self._src
-
-
-    # def __lt__(self, other):
-    #     return self._name < other._name
-
-    # def __eq__(self, other):
-    #     return self._name == other._name
-
-    # def __hash__(self):
-    #     return hash(self._name)
 
 
 #@total_ordering
@@ -62,21 +46,6 @@ class LinkNode(Node):
     @property
     def target(self):
         return self._target
-
-
-    # def __lt__(self, other):
-    #     othertarget = getattr(other, "_target", None)
-    #     if othertarget is not None:
-    #         return (self._name, self._target) < \
-    #                (other._name, othertarget)
-    #     else:
-    #         return self._name < other._name
-
-
-    # def __eq__(self, other):
-    #     othertarget = getattr(other, "_target", None)
-    #     return self._name == other._name and \
-    #            (othertarget is None or self._target == othertarget)
 
 
     def render(self, root, path):
