@@ -3,6 +3,8 @@ import logging
 import os
 import os.path as osp
 import posixpath
+import shutil
+import stat
 import sys
 
 import jinja2
@@ -139,3 +141,19 @@ def main():
             curdir.add_child(name, node)
 
     render_all(root)
+
+    assets_src = osp.join(config["THEME"], "assets")
+    assets_dest = osp.join(config["DESTDIR"],
+                           config["THEME_ASSETS_PATH"].lstrip(osp.sep))
+
+    if os.path.isdir(assets_src):
+        copied = False
+        while not copied:
+            try:
+                shutil.copytree(assets_src, assets_dest)
+                copied = True
+            except FileExistsError:
+                if not stat.S_ISDIR(os.lstat(assets_dest).st_mode):
+                    os.unlink(assets_dest)
+                else:
+                    shutil.rmtree(assets_dest)

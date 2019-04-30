@@ -15,6 +15,7 @@ DEFCONFIG = {
     "PAGE_EXTENSIONS": ("md",),
     "TEMPLATE_EXTENSIONS": ("template",),
     "THEME": DEFAULT_THEME,
+    "THEME_ASSETS_PATH": "/assets",
 }
 
 class Config:
