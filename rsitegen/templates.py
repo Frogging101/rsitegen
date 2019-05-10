@@ -1,10 +1,15 @@
 import os
 import os.path as osp
+import posixpath
 
 import jinja2
 
 import rsitegen.conf
 from rsitegen.conf import config
+
+
+def siteurl(path):
+    return posixpath.join(config["SITEURL"], path.lstrip('/'))
 
 
 def init_env():
@@ -18,5 +23,6 @@ def init_env():
         autoescape=False
     )
     jinja_env.globals["config"] = config
+    jinja_env.globals["siteurl"] = siteurl
 
     return jinja_env
