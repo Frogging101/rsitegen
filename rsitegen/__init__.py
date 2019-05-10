@@ -13,6 +13,7 @@ import rsitegen.conf
 from rsitegen.conf import config
 #import rsitegen.plugins
 from rsitegen.node import *
+import rsitegen.templates as templates
 import rsitegen.util
 
 logger = logging.getLogger()
@@ -93,16 +94,7 @@ def main():
     for k,v in config.items():
         logger.debug('config["' + k + '"]=' + str(v))
 
-    default_templates_dir = osp.join(rsitegen.conf.DEFAULT_THEME, "templates")
-    theme_templates_dir = osp.join(config["THEME"], "templates")
-
-    jinja_env = jinja2.Environment(
-        loader=jinja2.FileSystemLoader([theme_templates_dir,
-                                        default_templates_dir,
-                                        os.curdir]),
-        autoescape=False
-    )
-    jinja_env.globals["config"] = config
+    jinja_env = templates.init_env()
 
     parent = None
     root = None
