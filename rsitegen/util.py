@@ -5,7 +5,7 @@ import posixpath
 from rsitegen.conf import config
 
 def get_theme_template(template):
-    return template + ".html.template"
+    return template + ".template"
 
 
 def filetime(path):
